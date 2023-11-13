@@ -26,9 +26,9 @@ public class Product implements Serializable {
 
     @ManyToMany
     @JoinTable(
-        name = "tb_product_category",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
+            name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     Set<Category> categories = new HashSet<>();
 
@@ -92,8 +92,8 @@ public class Product implements Serializable {
         this.date = date;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     @Override
@@ -108,4 +108,5 @@ public class Product implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
