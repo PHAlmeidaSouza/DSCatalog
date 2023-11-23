@@ -52,4 +52,16 @@ public class ProductRepositoryTests {
         });
     }
 
+    @Test
+    public void findByIdShouldReturnNonEmptyOptionalWhenIdExists() {
+        Optional<Product> result = productRepository.findById(existingId);
+        Assertions.assertTrue(result.isPresent());
+    }
+
+    @Test
+    public void findByIdShouldReturnEmptyOptionalWhenIdDoesNotExist() {
+        Optional<Product> result = productRepository.findById(nonExistingId);
+        Assertions.assertTrue(result.isEmpty());
+    }
+
 }
