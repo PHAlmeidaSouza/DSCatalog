@@ -28,6 +28,18 @@ public class ProductRepositoryTests {
     }
 
     @Test
+    public void findByIdShouldReturnNonEmptyOptionalWhenIdExists() {
+        Optional<Product> result = productRepository.findById(existingId);
+        Assertions.assertTrue(result.isPresent());
+    }
+
+    @Test
+    public void findByIdShouldReturnEmptyOptionalWhenIdDoesNotExist() {
+        Optional<Product> result = productRepository.findById(nonExistingId);
+        Assertions.assertTrue(result.isEmpty());
+    }
+
+    @Test
     public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
         Product product = Factory.createProduct();
         product.setId(null);
@@ -50,18 +62,6 @@ public class ProductRepositoryTests {
         Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
             productRepository.deleteById(nonExistingId);
         });
-    }
-
-    @Test
-    public void findByIdShouldReturnNonEmptyOptionalWhenIdExists() {
-        Optional<Product> result = productRepository.findById(existingId);
-        Assertions.assertTrue(result.isPresent());
-    }
-
-    @Test
-    public void findByIdShouldReturnEmptyOptionalWhenIdDoesNotExist() {
-        Optional<Product> result = productRepository.findById(nonExistingId);
-        Assertions.assertTrue(result.isEmpty());
     }
 
 }
