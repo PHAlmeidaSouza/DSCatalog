@@ -100,5 +100,5 @@ public class ProductDTO {
         this.categories = categories;
     }
 
-    
+
 }
