@@ -1,7 +1,5 @@
 package com.devsuperior.dscatalog.entities;
-
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
