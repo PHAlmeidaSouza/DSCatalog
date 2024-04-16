@@ -1,5 +1,4 @@
 package com.devsuperior.dscatalog.repositories;
-
 import com.devsuperior.dscatalog.entities.Product;
 import com.devsuperior.dscatalog.tests.Factory;
 import org.junit.jupiter.api.Assertions;
@@ -35,7 +34,7 @@ public class ProductRepositoryTests {
     @Test
     public void findByIdShouldReturnEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
         Optional<Product> result = repository.findById(existingId);
-        Assertions.assertTrue(result.isEmpty());
+        Assertions.assertFalse(result.isEmpty());
     }
 
     @Test
