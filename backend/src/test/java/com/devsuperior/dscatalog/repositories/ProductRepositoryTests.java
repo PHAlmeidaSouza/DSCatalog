@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @DataJpaTest
 public class ProductRepositoryTests {
-
     @Autowired
     private ProductRepository repository;
     private long existingId;
@@ -28,6 +27,18 @@ public class ProductRepositoryTests {
     }
 
     @Test
+    public void findByIdShouldDeleteObjectWhenIdExists() {
+        Optional<Product> result = repository.findById(existingId);
+        Assertions.assertTrue(result.isPresent());
+    }
+
+    @Test
+    public void findByIdShouldReturnEmptyResultDataAccessExceptionWhenIdDoesNotExist() {
+        Optional<Product> result = repository.findById(existingId);
+        Assertions.assertTrue(result.isEmpty());
+    }
+
+    @Test
     public void saveShouldPersistWithAutoIncrementWhenIdIsNull() {
         Product product = Factory.createdProduct();
         product.setId(null);
@@ -38,7 +49,7 @@ public class ProductRepositoryTests {
 
     @Test
     public void deleteShouldDeleteObjectWhenIdExists() {
-        repository.deleteById(1L);
+        repository.deleteById(existingId);
         Optional<Product> result = repository.findById(existingId);
         Assertions.assertFalse(result.isPresent());
     }
