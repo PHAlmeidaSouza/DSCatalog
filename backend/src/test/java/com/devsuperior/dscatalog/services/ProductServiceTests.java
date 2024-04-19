@@ -58,7 +58,7 @@ public class ProductServiceTests {
         product = Factory.createdProduct();
         page = new PageImpl<>(List.of(product));
         category = Factory.createCategory();
-        productDTO = Factory.createdProductDTO();
+        productDTO = Factory.createProductDTO();
 
         Mockito.when(repository.findAll((Pageable) ArgumentMatchers.any())).thenReturn(page);
 
